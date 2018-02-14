@@ -4,9 +4,6 @@ import '../styles/site';
 import socketClient from 'socket.io-client';
 import { PropTypes } from 'prop-types';
 
-// Temp
-import ChatContainer from './components/ChatContainer/ChatContainer.js';
-
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -19,7 +16,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-                <ChatContainer />
+
             </div>
         );
     }

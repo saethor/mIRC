@@ -11,9 +11,19 @@ class ChatContainer extends React.Component {
             messages: []
         };
     }
+    componentDidMount() {
+        const { socket } = this.context;
+        
+        socket.on('updatechat', (roomName, history) => {
+            this.setState({
+                messages: history
+            });
+        });
+    }
     sendMessage(msg) {
-        // Do send message in socket
-        console.log(msg);
+        const { socket } = this.context;
+        
+        socket.emit('sendmsg', msg);
     }
     render() {
         const { messages } = this.state;
