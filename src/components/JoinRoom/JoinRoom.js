@@ -6,9 +6,9 @@ class JoinRoom extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            room: "",
-            password: "",
-            feedback: "",
+            room: '',
+            password: '',
+            feedback: '',
         }
     }
 
