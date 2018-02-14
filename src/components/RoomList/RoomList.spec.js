@@ -1,11 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { SocketIO, Server } from 'mock-socket';
 import sinon from 'sinon';
 import RoomList from './RoomList';
-
-
-jest.useFakeTimers();
 
 describe('RoomList tests', () => {
     let stub;
