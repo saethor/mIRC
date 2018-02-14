@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import '../styles/site';
 import socketClient from 'socket.io-client';
 import { PropTypes } from 'prop-types';
-
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 // Temp
-import InputPrompt from './components/InputPrompt/InputPrompt.js';
+import RoomContainer from './components/RoomContainer/RoomContainer';
 
 class App extends React.Component {
     constructor(props) {
@@ -13,17 +13,14 @@ class App extends React.Component {
     }
     getChildContext() {
         return {
-            socket: socketClient('http://localhost:9000')
+            socket: socketClient('http://localhost:8080')
         };
     }
     render() {
         return (
-            <div className="container">
-                <InputPrompt 
-                    onSubmit={(value) => alert(value) }
-                    label="Enter a username"
-                />
-            </div>
+            <Router>
+                <Route exact path="/" component={RoomContainer} />
+            </Router>
         );
     }
 };
