@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import List from '../List/List';
 import RoomItem from '../RoomItem/RoomItem';
+import InputPrompt from '../InputPrompt/InputPrompt';
 
 class RoomContainer extends React.Component {
     constructor(props) {
@@ -38,6 +40,7 @@ class RoomContainer extends React.Component {
         const roomNames = Object.keys(rooms);
         return (
             <div>
+                <InputPrompt label="Create new room" onSubmit={this.joinRoom.bind(this)} />
                 <List className="">
                     {roomNames.map(name => (
                         <RoomItem 
@@ -52,5 +55,9 @@ class RoomContainer extends React.Component {
         )
     }
 }
+
+RoomContainer.contextTypes = {
+    socket: PropTypes.object.isRequired
+};
 
 export default RoomContainer;
