@@ -5,9 +5,9 @@ const RoomList = ({ rooms }) => {
     rooms = rooms || [];
     return (
         <ul>
-            {rooms.map((room, index) => (
-                <li key={index}>
-                    <h3>{room}</h3>
+            {rooms.map(room => (
+                <li key={room.name}>
+                    <h3>{room.name}</h3>
                 </li>
             ))}
         </ul>
