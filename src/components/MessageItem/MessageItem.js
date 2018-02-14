@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const MessageItem = (message) => {
     const {date, user, text} = message;
     return (
-        <p>{ `${date} ${user} ${text}` }</p>
+        <li>{ `${date} ${user} ${text}` }</li>
     );
 };
 
