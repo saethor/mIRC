@@ -5,7 +5,7 @@ import socketClient from 'socket.io-client';
 import { PropTypes } from 'prop-types';
 
 // Temp
-// import ChatWindow from './components/ChatWindow/ChatWindow.js';
+import ChatContainer from './components/ChatContainer/ChatContainer.js';
 
 class App extends React.Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-                {/* <ChatWindow messages={messages} /> */}
+                <ChatContainer />
             </div>
         );
     }
