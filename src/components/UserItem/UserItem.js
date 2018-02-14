@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const UserItem = ({key, name, admin}) => {
+const UserItem = ({name, admin}) => {
     let display = admin ? `@${name}` : name;
     return (
-        <li key={key}>{display}</li>
+        <li>{display}</li>
     );
 };
 
 UserItem.propTypes = {
-    key: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     admin: PropTypes.bool
 };

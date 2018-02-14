@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MessageItem = (message) => {
-    const {date, user, text} = message;
+const MessageItem = ({message}) => {
+    const {date, user, text} = message ? message : {};
     return (
         <li>{ `${date} ${user} ${text}` }</li>
     );
