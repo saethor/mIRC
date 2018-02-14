@@ -13,7 +13,7 @@ class InputPrompt extends React.Component {
 
         return (
             <div className="input-container">
-                <label id="input-label" for="input-prompt">{ this.props.label }</label>
+                <label id="input-label" htmlFor="input-prompt">{ this.props.label }</label>
                 <div>
                     <input 
                         id="input-prompt" 
