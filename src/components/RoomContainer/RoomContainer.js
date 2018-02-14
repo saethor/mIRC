@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import List from '../List/List';
+import RoomItem from '../RoomItem/RoomItem';
 
 class RoomContainer extends React.Component {
     constructor(props) {
@@ -25,10 +25,11 @@ class RoomContainer extends React.Component {
 
     joinRoom(room, pass) {
         const { socket } = this.context;
-        const roomObj = this.state.rooms[room];
+        //const roomObj = this.state.rooms[room];
         const request = { room: room, pass: pass}
         socket.emit('joinroom', request, (status, reason) => {
             // Parse request
+            console.debug(reason);
         });
     }
 
@@ -39,21 +40,17 @@ class RoomContainer extends React.Component {
             <div>
                 <List className="">
                     {roomNames.map(name => (
-                        <li key={name}><h3>{name}</h3></li>
+                        <RoomItem 
+                            key={name} 
+                            name={name} 
+                            locked={rooms[name].locked} 
+                            onClick={this.joinRoom.bind(this)}
+                        />
                     ))}
                 </List>
             </div>
         )
     }
-}
-
-
-RoomContainer.propTypes = {
-
-}
-
-RoomContainer.defaultProps = { 
-
 }
 
 export default RoomContainer;
