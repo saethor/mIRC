@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js",
     "package": "webpack",
-    "test": "jest --config jest.config.js"
+    "test": "jest --config jest.config.js --watch"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +27,7 @@
     "jest": "^22.1.4",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
+    "mock-socket": "^7.1.0",
     "path": "^0.12.7",
     "style-loader": "^0.20.1",
     "webpack": "^3.10.0",
@@ -35,6 +36,7 @@
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "socket.io-client": "^2.0.4"
   }
 }
