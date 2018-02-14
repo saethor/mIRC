@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import RoomList from '../RoomList/RoomList';
+import List from '../List/List';
 
 class RoomContainer extends React.Component {
     constructor(props) {
@@ -34,8 +34,14 @@ class RoomContainer extends React.Component {
 
     render() {
         let { rooms } = this.state;
+        const roomNames = Object.keys(rooms);
         return (
             <div>
+                <List className="">
+                    {roomNames.map(name => (
+                        <li key={name}><h3>{name}</h3></li>
+                    ))}
+                </List>
             </div>
         )
     }
