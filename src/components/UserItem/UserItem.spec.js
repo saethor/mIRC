@@ -10,15 +10,15 @@ describe('UserItem tests', () => {
         stub = sinon.stub(console, 'error');
     });
 
-    it('should not render without required properties', () => {
+    it('should not render without required name property', () => {
         shallow(<UserItem />);
 
-        expect(stub.called).toBe(true);
+        expect(stub.calledOnce).toBe(true);
     });
 
     it('should render provided name property', () => {
         const name = 'me';
-        const component = shallow(<UserItem key={0} name={name} />);
+        const component = shallow(<UserItem name={name} />);
 
         let text = component.find('li').first().text();
 

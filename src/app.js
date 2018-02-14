@@ -5,7 +5,7 @@ import socketClient from 'socket.io-client';
 import { PropTypes } from 'prop-types';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 // Temp
-import RoomContainer from './components/RoomContainer/RoomContainer';
+import ChatContainer from './components/ChatContainer/ChatContainer.js';
 
 class App extends React.Component {
     constructor(props) {
@@ -18,9 +18,12 @@ class App extends React.Component {
     }
     render() {
         return (
-            <Router>
-                <Route exact path="/" component={RoomContainer} />
-            </Router>
+            <div className="container">
+                <Router>
+                    
+                    <Route exact path="/" component={ChatContainer} />
+                </Router>
+            </div>
         );
     }
 };
