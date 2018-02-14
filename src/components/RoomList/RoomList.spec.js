@@ -1,11 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { SocketIO, Server } from 'mock-socket';
 import sinon from 'sinon';
 import RoomList from './RoomList';
-
-
-jest.useFakeTimers();
 
 describe('RoomList tests', () => {
     let stub;
@@ -26,13 +22,13 @@ describe('RoomList tests', () => {
     })
 
     it('should render render one room correctly', () => {
-        const component = shallow(<RoomList rooms={["General"]} />);
+        const component = shallow(<RoomList rooms={[{name: "General"}]} />);
         expect(component.find('h3').text()).toEqual("General");
         expect(component.find('li').length).toEqual(1);
     });
 
     it('should render many rooms correctly', () => {
-        const component = shallow(<RoomList rooms={['General', 'CatGifs']} />);
+        const component = shallow(<RoomList rooms={[{ name: 'General' }, { name: 'CatGifs' }]} />);
         expect(component.find('h3').length).toEqual(2);
         expect(component.find('h3').first().text()).toEqual('General');
         expect(component.find('h3').last().text()).toEqual('CatGifs');
