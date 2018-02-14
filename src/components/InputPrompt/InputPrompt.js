@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-class LoginPrompt extends React.Component {
+class InputPrompt extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,4 +30,13 @@ class LoginPrompt extends React.Component {
     }
 };
 
-export default LoginPrompt;
+InputPrompt.propTypes = {
+    label: PropTypes.string,
+    onSubmit: PropTypes.func.isRequired
+};
+
+InputPrompt.defaultProps = {
+    label: 'Enter a value'
+};
+
+export default InputPrompt;

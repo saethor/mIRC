@@ -5,7 +5,7 @@ import socketClient from 'socket.io-client';
 import { PropTypes } from 'prop-types';
 
 // Temp
-import LoginPrompt from './components/LoginPrompt/LoginPrompt.js';
+import InputPrompt from './components/InputPrompt/InputPrompt.js';
 
 class App extends React.Component {
     constructor(props) {
@@ -19,7 +19,10 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-                <LoginPrompt />
+                <InputPrompt 
+                    onSubmit={(value) => alert(value) }
+                    label="Enter a username"
+                />
             </div>
         );
     }
