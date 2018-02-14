@@ -1,7 +1,7 @@
 import React from 'react';
 import InputPrompt from './InputPrompt.js';
-import sinon from 'sinon';
 import { shallow } from 'enzyme';
+import sinon from 'sinon';
 
 describe('InputPrompt tests', () => {
     let stub;
