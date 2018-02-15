@@ -39,7 +39,17 @@ describe('ChatContainer tests', () => {
         expect(component.instance().state.messages).toHaveLength(0);
     });
 
-    it('should receive updatechat signal after sending a new message', () => {
+    it('should update its messages state when receving an updatechat signal', () => {
+        const msg = 'fop';
+        const component = shallow(<ChatContainer room={room} />, {context: { socket: mockSocket} });
+
+        mockSocketServer.emit('updatechat', room, [msg], msg);
+
+        expect(component.instance().state.messages).toHaveLength(1);
+        expect(component.instance().state.messages[0]).toEqual(msg);
+    });
+
+    it('should update its message state after sending a new message', () => {
         const msg = 'hello';
         const component = shallow(<ChatContainer room={room} />, {context: { socket: mockSocket} });
 
@@ -48,6 +58,7 @@ describe('ChatContainer tests', () => {
         expect(component.instance().state.messages).toHaveLength(1);
         expect(component.instance().state.messages[0]).toEqual(msg);
     });
+
 
     afterEach(() => {
         console.error.restore();
