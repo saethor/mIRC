@@ -7,6 +7,7 @@ import { SocketIO, Server } from 'mock-socket';
 jest.useFakeTimers();
 
 describe('ChatContainer tests', () => {
+    const room = 'foo';
     let mockSocketServer, mockSocket, stub;
 
     beforeEach(() => {
@@ -15,7 +16,7 @@ describe('ChatContainer tests', () => {
         mockSocketServer = new Server('http://localhost:3050');
         mockSocketServer.on('connection', socket =>  {
             socket.on('sendmsg', (msg) => {
-                socket.emit('updatechat', 'foo', [msg], msg);
+                socket.emit('updatechat', room, [msg], msg);
             });
         });
 
@@ -30,9 +31,17 @@ describe('ChatContainer tests', () => {
         expect(stub.notCalled).toBe(true);
     });
 
+    it('should not update its messages state if not proper room prop set', () => {
+        const component = shallow(<ChatContainer />, {context: { socket: mockSocket} });
+
+        component.instance().sendMessage('fop');
+
+        expect(component.instance().state.messages).toHaveLength(0);
+    });
+
     it('should receive updatechat signal after sending a new message', () => {
         const msg = 'hello';
-        const component = shallow(<ChatContainer />, {context: { socket: mockSocket} });
+        const component = shallow(<ChatContainer room={room} />, {context: { socket: mockSocket} });
 
         component.instance().sendMessage(msg);
 

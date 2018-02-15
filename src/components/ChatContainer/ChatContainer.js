@@ -1,6 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import List from '../List/List.js';
+import PropTypes from 'prop-types';
 import ChatWindow from '../ChatWindow/ChatWindow.js';
 import MessageInput from '../MessageInput/MessageInput.js';
 
@@ -15,9 +14,11 @@ class ChatContainer extends React.Component {
         const { socket } = this.context;
         
         socket.on('updatechat', (roomName, history) => {
-            this.setState({
-                messages: history
-            });
+            if (this.props.room === roomName) {
+                this.setState({
+                    messages: history
+                });
+            }
         });
     }
     sendMessage(msg) {
@@ -34,6 +35,10 @@ class ChatContainer extends React.Component {
             </div>
         );
     }
+};
+
+ChatContainer.propTypes = {
+    room: PropTypes.string
 };
 
 export default ChatContainer;
