@@ -7,7 +7,9 @@ class ChatContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: []
+            messages: [],
+            users: {},
+            ops: {}
         };
     }
     componentDidMount() {
@@ -17,6 +19,15 @@ class ChatContainer extends React.Component {
             if (this.props.room === roomName) {
                 this.setState({
                     messages: history
+                });
+            }
+        });
+
+        socket.on('updateusers', (roomName, users, ops) => {
+            if (this.props.room === roomName) {
+                this.setState({
+                    users: users,
+                    ops: ops
                 });
             }
         });

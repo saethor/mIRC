@@ -59,6 +59,39 @@ describe('ChatContainer tests', () => {
         expect(component.instance().state.messages[0]).toEqual(msg);
     });
 
+    it('should not update its users state after updateusers signal if room doesnt match', () => {
+        const component = shallow(<ChatContainer />, {context: { socket: mockSocket} });
+
+        mockSocketServer.emit('updateusers', room, {name: 'foo'}, {});
+
+        expect(component.instance().state.users).toEqual({});
+    });
+
+    it('should not update its ops state after updateusers signal if room doesnt match', () => {
+        const component = shallow(<ChatContainer />, {context: { socket: mockSocket} });
+
+        mockSocketServer.emit('updateusers', room, {}, {name: 'foo'});
+
+        expect(component.instance().state.ops).toEqual({});
+    });
+
+    it('should update its users state after receiving an updateusers signal if room matches', () => {
+        const users = {name: 'foo'};
+        const component = shallow(<ChatContainer room={room} />, {context: { socket: mockSocket} });
+
+        mockSocketServer.emit('updateusers', room, users, {});
+
+        expect(component.instance().state.users).toEqual(users);
+    });
+
+    it('should update its ops state after receiving an updateusers signal if room matches', () => {
+        const ops = {name: 'foo'};
+        const component = shallow(<ChatContainer room={room} />, {context: { socket: mockSocket} });
+
+        mockSocketServer.emit('updateusers', room, {}, ops);
+
+        expect(component.instance().state.ops).toEqual(ops);
+    });
 
     afterEach(() => {
         console.error.restore();
