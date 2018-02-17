@@ -39,10 +39,11 @@ class ChatContainer extends React.Component {
     }
     render() {
         const { messages } = this.state;
+
         return (
             <div>
                 <ChatWindow messages={ messages } />
-                <MessageInput onSend={ this.sendMessage } />
+                <MessageInput onSend={ (msg) => this.sendMessage(msg) } />
             </div>
         );
     }
@@ -50,6 +51,10 @@ class ChatContainer extends React.Component {
 
 ChatContainer.propTypes = {
     room: PropTypes.string
+};
+
+ChatContainer.contextTypes = {
+    socket: PropTypes.object.isRequired
 };
 
 export default ChatContainer;
