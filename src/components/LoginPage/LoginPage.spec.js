@@ -39,17 +39,15 @@ describe('LoginPage tests', () => {
 
     it('updates the logged in user if valid user', () => {
         let ctx = {
-            context: {
-                socket: mockSocket,
-                username: ''
-            }
+            socket: mockSocket,
+            username: ''
         }
-        const component = shallow(<LoginPage />, ctx);
+        const component = shallow(<LoginPage />, {context: ctx});
 
         component.instance().onLogin(validUser);
 
         expect(component.instance().state.validUser).toBe(true);
-        expect(ctx.context.username).toEqual(validUser);
+        expect(ctx.username).toEqual(validUser);
     });
 
     afterEach(() => {
