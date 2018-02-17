@@ -18,6 +18,7 @@ class RoomContainer extends React.Component {
         socket.on('roomlist', rooms => {
             this.setState({ rooms: rooms })
         });
+        this.roomList();
     }
 
     roomList() {
@@ -38,6 +39,7 @@ class RoomContainer extends React.Component {
     render() {
         let { rooms } = this.state;
         const roomNames = Object.keys(rooms);
+        console.log(roomNames);
         return (
             <div>
                 <InputPrompt label="Create new room" onSubmit={this.joinRoom.bind(this)} />

@@ -7,13 +7,15 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginPage from './components/LoginPage/LoginPage.js';
 import RoomContainer from './components/RoomContainer/RoomContainer.js';
 
+const socket = socketClient('http://localhost:8080');
+
 class App extends React.Component {
     constructor(props) {
         super(props);
     }
     getChildContext() {
         return {
-            socket: socketClient('http://localhost:8080'),
+            socket: socket,
             username: ''
         };
     }
