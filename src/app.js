@@ -13,11 +13,22 @@ const socket = socketClient('http://localhost:8080');
 class App extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            notifications: []
+        }
     }
     getChildContext() {
         return {
             socket: socket,
         };
+    }
+    componentDidMount() {
+        socket.on('recv_privatemsg', (username, message) => {
+            console.log('msg from', username, message);
+            let notifications = Object.assign([], this.state.notifications);
+            notifications.unshift({title: `${username}: ${message}`, link: `/users/${username}`})
+            this.setState({notifications})
+        });
     }
     render() {
         return (
@@ -27,6 +38,7 @@ class App extends React.Component {
                     <Route exact path="/" component={RoomContainer} />
                     <Route exact path="/rooms" component={RoomContainer} />
                     <Route path="/rooms/:room" render={({ match }) => (<ChatContainer room={match.params.room} />)} />
+                    <Route path="/users/:user" render={({ match }) => (<ChatContainer room={match.params.user} privateMsg={true} />)} />
                 </Switch>
             </div>
         );
