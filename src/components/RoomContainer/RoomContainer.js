@@ -17,7 +17,6 @@ class RoomContainer extends React.Component {
         const { socket } = this.context;
         socket.on('roomlist', rooms => {
             this.setState({ rooms: rooms })
-            console.log(rooms);
         });
         this.roomList();
     }

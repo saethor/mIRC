@@ -42,11 +42,19 @@ class ChatContainer extends React.Component {
     }
     sendMessage(msg) {
         const { socket } = this.context;
-        
-        socket.emit('sendmsg', {
-            roomName: this.props.room,
-            msg: msg
-        });
+        const { privateMsg } = this.props;
+
+        if (privateMsg) {
+            socket.emit('privatemsg', {
+                nick: this.props.room,
+                message: msg
+            }, (res) => console.log(res));
+        } else {
+            socket.emit('sendmsg', {
+                roomName: this.props.room,
+                msg: msg
+            });
+        }
     }
     render() {
         const { ops, users, messages } = this.state;
@@ -63,11 +71,16 @@ class ChatContainer extends React.Component {
 };
 
 ChatContainer.propTypes = {
-    room: PropTypes.string
+    room: PropTypes.string,
+    privateMsg: PropTypes.bool
 };
 
 ChatContainer.contextTypes = {
     socket: PropTypes.object.isRequired
 };
+
+ChatContainer.defaultProps = {
+    privateMsg: false
+}
 
 export default ChatContainer;

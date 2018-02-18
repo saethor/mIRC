@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 class UserItem extends React.Component {
     constructor(props) {
         super(props);
@@ -39,7 +41,7 @@ class UserItem extends React.Component {
                 {admin ? <button onClick={this.deop.bind(this)}>DEOP</button> : <button onClick={this.op.bind(this)}>OP</button>}
                 <button onClick={this.kick.bind(this)}>Kick</button>
                 <button onClick={this.ban.bind(this)}>Ban</button>
-                <button>PM</button>
+                <Link to={`/users/${name}`}>PM</Link>
             </li>
         );
     }
