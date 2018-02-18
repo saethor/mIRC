@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ChatWindow from '../ChatWindow/ChatWindow.js';
 import MessageInput from '../MessageInput/MessageInput.js';
+import UserList from '../UserList/UserList.js';
 
 class ChatContainer extends React.Component {
     constructor(props) {
@@ -9,14 +10,14 @@ class ChatContainer extends React.Component {
         this.state = {
             messages: [],
             users: {},
-            ops: {}
+            ops: {},
+            status: false
         };
     }
     componentDidMount() {
         const { socket } = this.context;
         
         socket.on('updatechat', (roomName, history) => {
-            console.log(history);
             if (this.props.room === roomName) {
                 this.setState({
                     messages: history
@@ -32,6 +33,12 @@ class ChatContainer extends React.Component {
                 });
             }
         });
+
+        socket.emit('joinroom', {room: this.props.room}, (status) => {
+            this.setState({
+                status: status
+            });
+        });
     }
     sendMessage(msg) {
         const { socket } = this.context;
@@ -42,11 +49,12 @@ class ChatContainer extends React.Component {
         });
     }
     render() {
-        const { messages } = this.state;
+        const { ops, users, messages } = this.state;
 
         return (
             <div>
                 <ChatWindow messages={ messages } />
+                <UserList ops={ ops } users={ users } />
                 <MessageInput onSend={ (msg) => this.sendMessage(msg) } />
             </div>
         );

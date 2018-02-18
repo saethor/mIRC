@@ -16,9 +16,18 @@ describe('ChatContainer tests', () => {
         mockSocketServer = new Server('http://localhost:3050');
         mockSocketServer.on('connection', socket =>  {
             socket.on('sendmsg', (msg) => {
-                socket.emit('updatechat', room, [msg], msg);
+                socket.emit('updatechat', room, [msg.msg], msg);
+            });
+
+            socket.on('joinroom', (data, fn) => {
+                if (data.room == room) {
+                    fn(true);
+                } else {
+                    fn(false);
+                }
             });
         });
+
 
         mockSocket = SocketIO.connect('http://localhost:3050');
 
@@ -92,6 +101,18 @@ describe('ChatContainer tests', () => {
 
         expect(component.instance().state.ops).toEqual(ops);
     });
+
+    it('has a status state of true if joining a room suceeds', () => {
+        const component = shallow(<ChatContainer room={room} />, {context: { socket: mockSocket} });
+
+        expect(component.instance().state.status).toBe(true);
+    });
+    
+    it('sets status as false when joining a room fails', () => {
+        const component = shallow(<ChatContainer />, {context: { socket: mockSocket} });
+    
+        expect(component.instance().state.status).toBe(false);
+    })
 
     afterEach(() => {
         console.error.restore();
