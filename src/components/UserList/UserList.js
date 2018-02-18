@@ -6,7 +6,7 @@ const UserList = ({ ops, users, room }) => {
     let key = 0;
     
     return (
-        <ul>
+        <ul className="user-list">
             {Object.keys(ops).map(op => (
                 <UserItem key={key++} name={op} admin={true} room={room} />
             ))}

@@ -36,7 +36,7 @@ class UserItem extends React.Component {
         const {name, admin} = this.props;
         let display = admin ? `@${name}` : name;
         return (
-            <li>
+            <li className="user-item">
                 {display} 
                 {admin ? <button onClick={this.deop.bind(this)}>DEOP</button> : <button onClick={this.op.bind(this)}>OP</button>}
                 <button onClick={this.kick.bind(this)}>Kick</button>

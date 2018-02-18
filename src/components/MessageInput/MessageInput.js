@@ -8,22 +8,27 @@ class MessageInput extends React.Component {
             input: ''
         };
     }
+    onSubmit(e) {
+        e.preventDefault();
+    }
     render() {
         const { input } = this.state;
         return (
-            <div>
+            <form className="chat-send-wrapper" onSubmit={this.onSubmit}>
                 <input 
+                    className="chat-send-text"
                     id="message-input"
                     type="text" 
                     onInput={ (e) => this.setState({input: e.target.value}) }
                 />
                 <input 
+                    className="btn"
                     id="message-send"
-                    type="button" 
+                    type="submit" 
                     value="Send"
                     onClick={ () => this.props.onSend(input) }
                 />
-            </div>
+            </form>
         );
     }
 };

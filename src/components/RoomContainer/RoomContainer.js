@@ -41,7 +41,8 @@ class RoomContainer extends React.Component {
         const roomNames = Object.keys(rooms);
         console.log(roomNames);
         return (
-            <div>
+            <div className="room-container">
+                <h2 className="room-header">Available rooms</h2>
                 <button onClick={this.roomList.bind(this)}>refresh</button>
                 <InputPrompt label="Create new room" onSubmit={this.joinRoom.bind(this)} />
                 <List className="">

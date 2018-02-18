@@ -61,9 +61,11 @@ class ChatContainer extends React.Component {
         const { room } = this.props;
 
         return (
-            <div>
-                <ChatWindow messages={ messages } />
-                <UserList ops={ ops } users={ users } room={ room } />
+            <div className="chat-container">
+                <div className="chat-window-wrapper">
+                    <ChatWindow messages={ messages } />
+                    <UserList ops={ ops } users={ users } room={ room } />
+                </div>
                 <MessageInput onSend={ (msg) => this.sendMessage(msg) } />
             </div>
         );
@@ -80,7 +82,8 @@ ChatContainer.contextTypes = {
 };
 
 ChatContainer.defaultProps = {
-    privateMsg: false
+    privateMsg: false,
+    room: 'lobby'
 }
 
 export default ChatContainer;
