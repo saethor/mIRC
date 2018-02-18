@@ -62,6 +62,7 @@ class ChatContainer extends React.Component {
 
         return (
             <div className="chat-container">
+                <h2>{room}</h2>
                 <div className="chat-window-wrapper">
                     <ChatWindow messages={ messages } />
                     <UserList ops={ ops } users={ users } room={ room } />
