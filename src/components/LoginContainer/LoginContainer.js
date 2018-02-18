@@ -21,8 +21,16 @@ class LoginContainer extends React.Component {
     }
     render() {
         const { validUser } = this.state;
-        
-        return validUser ? (<Redirect to="/rooms" />) : (<LoginForm onSubmit={ (username) => this.onLogin(username) } />);
+
+        if (validUser) {
+            return (<Redirect to="/rooms" />);
+        }
+
+        return (
+            <div className="login-container">
+                <LoginForm onSubmit={ (username) => this.onLogin(username) } />
+            </div>
+        );
     }
 }
 

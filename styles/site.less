@@ -1,5 +1,64 @@
+@import 'mixins';
+@import 'variables';
+
 // Insert your styles here, using LESS
+body {
+    background: @background;
+}
+
 .container {
-    width: 60%;
-    margin: auto;
+    .medium_screen({
+        width: 60%;
+        margin: auto;
+    });
+}
+
+.login-container {
+    margin-top: 10em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    padding: 1em;
+    background: @light;
+    box-shadow: 2px 2px #888;
+}
+
+.btn {
+    background: @primary;
+    color: @light;
+    border: @light;
+    border-radius: 2px;
+    font-size: 1em;
+    font-weight: bold;
+    padding: .5em;
+    cursor: pointer;
+    &:hover {
+        background: darken(@primary, 10%);
+    }
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
+.flex-field {
+    display: flex;
+    flex-direction: column;
+    .flex-label { 
+        margin-bottom: .5em;
+        text-align: center;
+    }
+    .flex-input {
+        display: flex;
+        flex-direction: column;
+        input {
+            margin-bottom: .5em;
+        }
+        .small_screen({
+            flex-direction: row;
+            justify-content: space-between;
+        })
+    }
 }
