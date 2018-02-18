@@ -23,6 +23,7 @@ class InputPrompt extends React.Component {
                     <input 
                         id="input-prompt-btn" 
                         type="button" 
+                        className="btn"
                         value="Submit" 
                         onClick={ () => this.props.onSubmit(input) }
                     />

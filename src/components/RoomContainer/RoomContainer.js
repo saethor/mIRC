@@ -26,14 +26,10 @@ class RoomContainer extends React.Component {
         socket.emit('rooms');
     }
 
-    joinRoom(room, pass) {
-        const { socket, router } = this.context;
+    joinRoom(room) {
+        const { router } = this.context;
         //const roomObj = this.state.rooms[room];
-        const request = { room: room, pass: pass}
-        socket.emit('joinroom', request, (status, reason) => {
-            console.log(request, status, reason);
-            router.history.push(`/rooms/${room}`)
-        });
+        router.history.push(`/rooms/${room}`)
     }
 
     render() {
@@ -43,9 +39,11 @@ class RoomContainer extends React.Component {
         return (
             <div className="room-container">
                 <h2 className="room-header">Available rooms</h2>
-                <button onClick={this.roomList.bind(this)}>refresh</button>
-                <InputPrompt label="Create new room" onSubmit={this.joinRoom.bind(this)} />
-                <List className="">
+                <div className="room-control">
+                    <InputPrompt label="Create new room" onSubmit={this.joinRoom.bind(this)} />
+                    <button className="btn" onClick={this.roomList.bind(this)}>refresh</button>
+                </div>
+                <List className="room-list">
                     {roomNames.map(name => (
                         <RoomItem 
                             key={name} 

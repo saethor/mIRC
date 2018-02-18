@@ -34,6 +34,11 @@ body {
     flex-direction: column;
 }
 
+.room-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .box {
     padding: 1em;
     background: @light;
@@ -125,4 +130,21 @@ body {
     .medium_screen({
         order: 2;
     })
+}
+
+.room-control {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.room-list {
+    background: @light;
+    padding: .5em;
+    li {
+        list-style-type: none;
+        a {
+            text-decoration: none;
+        }
+    }
 }
