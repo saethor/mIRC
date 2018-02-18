@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import UserItem from '../UserItem/UserItem.js';
 
-const UserList = ({ ops, users }) => {
+const UserList = ({ ops, users, room }) => {
     let key = 0;
     
     return (
         <ul>
             {Object.keys(ops).map(op => (
-                <UserItem key={key++} name={op} admin={true} />
+                <UserItem key={key++} name={op} admin={true} room={room} />
             ))}
             {Object.keys(users).map(user => (
-                <UserItem key={key++} name={user} />
+                <UserItem key={key++} name={user} room={room} />
             ))}
         </ul>
     )
@@ -19,7 +19,8 @@ const UserList = ({ ops, users }) => {
 
 UserList.propTypes = {
     ops: PropTypes.object,
-    users: PropTypes.object
+    users: PropTypes.object,
+    room: PropTypes.string.isRequired,
 };
 
 UserList.defaultProps = {

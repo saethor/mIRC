@@ -50,11 +50,12 @@ class ChatContainer extends React.Component {
     }
     render() {
         const { ops, users, messages } = this.state;
+        const { room } = this.props;
 
         return (
             <div>
                 <ChatWindow messages={ messages } />
-                <UserList ops={ ops } users={ users } />
+                <UserList ops={ ops } users={ users } room={ room } />
                 <MessageInput onSend={ (msg) => this.sendMessage(msg) } />
             </div>
         );
