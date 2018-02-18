@@ -23,7 +23,8 @@ class App extends React.Component {
         return (
             <div className="container">
                 <Switch>
-                    <Route exact path="/" component={LoginContainer} />
+                    <Route exact path="/login" component={LoginContainer} />
+                    <Route exact path="/" component={RoomContainer} />
                     <Route exact path="/rooms" component={RoomContainer} />
                     <Route path="/rooms/:room" render={({ match }) => (<ChatContainer room={match.params.room} />)} />
                 </Switch>

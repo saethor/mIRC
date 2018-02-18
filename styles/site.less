@@ -13,6 +13,15 @@ body {
     });
 }
 
+.app-header {
+    text-align: center;
+    color: @light;
+    background: @primary;
+    margin: 0;
+    margin-bottom: 1em;
+    padding: 1em;
+}
+
 .login-container {
     margin-top: 10em;
     display: flex;
@@ -55,6 +64,9 @@ body {
         flex-direction: column;
         input {
             margin-bottom: .5em;
+        }
+        input[type="text"] {
+            flex: 1 1 auto;
         }
         .small_screen({
             flex-direction: row;

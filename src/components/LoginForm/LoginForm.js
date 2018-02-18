@@ -8,19 +8,22 @@ class LoginForm extends React.Component {
             input: ''
         };
     }
+    handleSubmit(e) {
+        e.preventDefault();
+    }
     render() {
         const { input } = this.state;
 
         return (
-            <div className="box">
+            <form className="box" onSubmit={this.handleSubmit}>
                 <div className="flex-field">
                     <label className="flex-label" htmlFor="username">Choose a username</label>
                     <div className="flex-input">
                         <input id="username" type="text" onInput={ (e) => this.setState({input: e.target.value})} />
-                        <input className="btn" type="button" value="Submit" onClick={ () => this.props.onSubmit(input) } />
+                        <input className="btn" type="submit" value="Submit" onClick={ () => this.props.onSubmit(input) } />
                     </div>
                 </div>
-            </div>
+            </form>
         )
     }
 }

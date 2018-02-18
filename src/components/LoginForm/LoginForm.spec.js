@@ -28,7 +28,7 @@ describe('LoginForm tests', () => {
         const component = shallow(<LoginForm onSubmit={(value) => { input = value }} />)
         
         component.find('input[type="text"]').first().simulate('input', { target: { value: testInput } });
-        component.find('input[type="button"]').first().simulate('click');
+        component.find('input[type="submit"]').first().simulate('click');
         
         expect(input).toEqual(testInput);
     });
