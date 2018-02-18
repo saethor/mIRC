@@ -1,12 +1,12 @@
 import React from 'react';
-import LoginPage from './LoginPage.js';
+import LoginContainer from './LoginContainer.js';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import { SocketIO, Server } from 'mock-socket';
 
 jest.useFakeTimers();
 
-describe('LoginPage tests', () => {
+describe('LoginContainer tests', () => {
     let validUser = 'user';
     let mockSocketServer, mockSocket, stub;
 
@@ -30,7 +30,7 @@ describe('LoginPage tests', () => {
     });
 
     it('doesn\'t update its validUser state if invalid user', () => {
-        const component = shallow(<LoginPage />, {context: {socket: mockSocket}});
+        const component = shallow(<LoginContainer />, {context: {socket: mockSocket}});
 
         component.instance().onLogin('someone');
 
@@ -38,16 +38,11 @@ describe('LoginPage tests', () => {
     });
 
     it('updates the logged in user if valid user', () => {
-        let ctx = {
-            socket: mockSocket,
-            username: ''
-        }
-        const component = shallow(<LoginPage />, {context: ctx});
+        const component = shallow(<LoginContainer />, {context: {socket: mockSocket}});
 
         component.instance().onLogin(validUser);
 
         expect(component.instance().state.validUser).toBe(true);
-        expect(ctx.username).toEqual(validUser);
     });
 
     afterEach(() => {

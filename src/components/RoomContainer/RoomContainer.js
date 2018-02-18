@@ -31,8 +31,8 @@ class RoomContainer extends React.Component {
         //const roomObj = this.state.rooms[room];
         const request = { room: room, pass: pass}
         socket.emit('joinroom', request, (status, reason) => {
+            console.log(request, status, reason);
             // Parse request
-            console.debug(reason);
         });
     }
 

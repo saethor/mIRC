@@ -16,6 +16,7 @@ class ChatContainer extends React.Component {
         const { socket } = this.context;
         
         socket.on('updatechat', (roomName, history) => {
+            console.log(history);
             if (this.props.room === roomName) {
                 this.setState({
                     messages: history
@@ -35,7 +36,10 @@ class ChatContainer extends React.Component {
     sendMessage(msg) {
         const { socket } = this.context;
         
-        socket.emit('sendmsg', msg);
+        socket.emit('sendmsg', {
+            roomName: this.props.room,
+            msg: msg
+        });
     }
     render() {
         const { messages } = this.state;
