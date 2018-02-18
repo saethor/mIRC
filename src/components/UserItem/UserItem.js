@@ -37,11 +37,15 @@ class UserItem extends React.Component {
         let display = admin ? `@${name}` : name;
         return (
             <li className="user-item">
-                {display} 
-                {admin ? <button onClick={this.deop.bind(this)}>DEOP</button> : <button onClick={this.op.bind(this)}>OP</button>}
-                <button onClick={this.kick.bind(this)}>Kick</button>
-                <button onClick={this.ban.bind(this)}>Ban</button>
-                <Link to={`/users/${name}`}>PM</Link>
+                <span>
+                    {display} 
+                </span>
+                <div>
+                    {admin ? <button onClick={this.deop.bind(this)}>DEOP</button> : <button onClick={this.op.bind(this)}>OP</button>}
+                    <button onClick={this.kick.bind(this)}>Kick</button>
+                    <button onClick={this.ban.bind(this)}>Ban</button>
+                    <Link to={`/users/${name}`}>PM</Link>
+                </div>
             </li>
         );
     }

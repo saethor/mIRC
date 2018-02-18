@@ -10,9 +10,9 @@ const ChatWindow = ({messages}) => {
                     
                     return (
                         <li className="chat-message" key={ index } >
-                            { `${nick} ${timestamp} ${message}` }
+                            { `<${new Date(timestamp).toString().substr(4, 20)}> ${nick}: ${message}` }
                         </li>
-                    );   
+                    );      
                 })
             }</ul>
         </div>
