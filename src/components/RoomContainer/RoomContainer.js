@@ -35,7 +35,6 @@ class RoomContainer extends React.Component {
     render() {
         let { rooms } = this.state;
         const roomNames = Object.keys(rooms);
-        console.log(roomNames);
         return (
             <div className="room-container">
                 <h2 className="room-header">Available rooms</h2>
