@@ -10,15 +10,23 @@ class MessageInput extends React.Component {
     }
     onSubmit(e) {
         e.preventDefault();
+        const { input } = this.state;
+
+        this.setState({
+            input: ''
+        });
+
+        this.props.onSend(input);
     }
     render() {
         const { input } = this.state;
         return (
-            <form className="chat-send-wrapper" onSubmit={this.onSubmit}>
+            <form className="chat-send-wrapper" onSubmit={(e) => this.onSubmit(e)}>
                 <input 
                     className="chat-send-text"
                     id="message-input"
-                    type="text" 
+                    type="text"
+                    value={input}
                     onInput={ (e) => this.setState({input: e.target.value}) }
                 />
                 <input 
@@ -26,7 +34,6 @@ class MessageInput extends React.Component {
                     id="message-send"
                     type="submit" 
                     value="Send"
-                    onClick={ () => this.props.onSend(input) }
                 />
             </form>
         );

@@ -34,9 +34,21 @@ describe('MessageInput tests', () => {
         const component = shallow(<MessageInput onSend={(value) => { input = value }} />)
         
         component.find('#message-input').first().simulate('input', { target: { value: testInput } });
-        component.find('#message-send').first().simulate('click');
+        component.find('form').first().simulate('submit', { preventDefault: () => 0});
         
         expect(input).toEqual(testInput);
+    });
+
+    it('should clear its text input on message send', () => {
+        const fakeEvent = {
+            preventDefault: () => 0
+        };
+        const component = shallow(<MessageInput onSend={() => 0} />);
+
+        component.find('#message-input').first().simulate('input', {target: {value: 'something'}});
+        component.find('form').first().simulate('submit', {preventDefault: () => 0});
+
+        expect(component.find("#message-input").first().props().value).toEqual('');
     });
 
     afterEach(() => {
