@@ -153,3 +153,79 @@ body {
         }
     }
 }
+
+
+.notifications-container {
+    background: @light;
+    position: absolute;
+    bottom: 0;
+    width: 18.75em;
+    right: 0;
+    margin: 0 .5em;
+}
+
+.notifications-header {
+    margin: 0;
+    padding: .5em 1em;
+    cursor: pointer;
+    background: @primary;
+    h3 {
+        margin: 0;
+        color: @light;
+    }
+    .close {
+        float: right;
+    }
+}
+
+.notifications {
+    margin: 0em;    
+    list-style: none;
+    padding: 0;
+
+    &.open {
+        display: block;
+    }
+
+    &.closed {
+        display: none;
+    }
+}
+
+.notification {
+    padding: 0 0 0.5em;
+    margin: .2em 1em; 
+
+    &:first-child {
+        margin-top: 1em;
+    }
+
+    button {
+        background: @primary;
+        border: .1em solid @dark;
+        color: white;
+        border-radius: .2em;
+        padding: .2em .5em;
+        margin: 0 .5em;
+        float: right;
+        cursor: pointer;
+
+        &:hover {
+            background: darken(@primary, 10%);
+        }
+    }
+
+    a {
+        color: @primary;
+        text-decoration: none;
+
+       &:hover {
+           text-decoration: underline;
+       }
+
+    }
+
+    &.unread {
+        font-weight: bold; 
+    }
+}
