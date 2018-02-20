@@ -11,19 +11,19 @@ describe('UserList tests', () => {
     });
 
     it('should render without any property', () => {
-        shallow(<UserList />);
+        shallow(<UserList room="room" />);
 
         expect(stub.notCalled).toBe(true);
     });
 
     it('should not render with invalid ops property', () => {
-        shallow(<UserList ops={[]} />);
+        shallow(<UserList ops={[]} room="room"/>);
 
         expect(stub.calledOnce).toBe(true);
     })
 
     it('should not render with invalid users property', () => {
-        shallow(<UserList users={[]} />);
+        shallow(<UserList users={[]} room="room" />);
 
         expect(stub.calledOnce).toBe(true);
     })
