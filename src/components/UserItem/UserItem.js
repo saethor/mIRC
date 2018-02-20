@@ -11,25 +11,25 @@ class UserItem extends React.Component {
     op() {
         const { socket } = this.context;
         const { room, name } = this.props;
-        socket.emit('op', { room, user: name}, (bool) => console.log('response', bool));
+        socket.emit('op', { room, user: name}, function(bool) {});
     }
 
     deop() {
         const { socket } = this.context;
         const { room, name } = this.props;
-        socket.emit('deop', { room, user: name}, (bool) => console.log('response', bool));
+        socket.emit('deop', { room, user: name}, function(bool) {});
     }
 
     kick() {
         const { socket } = this.context;
         const { room, name } = this.props;
-        socket.emit('kick', { room, user: name}, (bool) => console.log('response', bool));
+        socket.emit('kick', { room, user: name}, function(bool) {});
     }
 
     ban() {
         const { socket } = this.context;
         const { room, name } = this.props;
-        socket.emit('ban', { room, user: name}, (bool) => console.log('response', bool));
+        socket.emit('ban', { room, user: name}, function(bool) {});
     }
 
     render() {

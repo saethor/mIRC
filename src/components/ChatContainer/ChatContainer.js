@@ -48,7 +48,9 @@ class ChatContainer extends React.Component {
             socket.emit('privatemsg', {
                 nick: this.props.room,
                 message: msg
-            }, (res) => console.log(res));
+            }, function(res) {
+
+            });
         } else {
             socket.emit('sendmsg', {
                 roomName: this.props.room,
